@@ -13,15 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+          tu es connecté !
+          <div class="alert alert-dark">
+          <a href="{{route('admin')}}">Accéder à l espace Admin</a>
+          </div>
                     @foreach ($user_list as $user)
 				<div class="alert alert-info">
 					<p> Surnom: {{ $user['name'] }}</p>
-					<p> PrÃ©nom: {{ $user['firstname'] }}</p>
+					<p> Prénom: {{ $user['firstname'] }}</p>
 					<p> Nom: {{ $user['lastname'] }}</p>
 					<p> Email: {{ $user['email'] }} </p>
 					<p> Bio: {{ !empty($user['bio']) ? $user['bio'] : "pas de bio" }} </p>
-					<p> CompÃ©tences:  </p>			   
+					<p> Compétences:  </p>			   
 				 @foreach ($user->skills as $skill)
 					<div class="alert alert-info">
 						<p> Nom compÃ©tences: {{ $skill['name'] }} </p>
