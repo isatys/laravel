@@ -16,7 +16,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        $skills = User::find(Auth::id())->skills;
+        $skills = Skill::all();
         return view('skills.index', compact('skills'));
     }
 
@@ -90,6 +90,17 @@ class SkillController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $skill = Skill::findOrFail($id);
+
+        $request->validate([
+            'name'=>'required',
+            'desc'=>'required',
+            'logo' => 'required'
+        ]);
+
+        $skill->fill($request->all())->save();
+
+        return redirect('/skills');
     }
 
     /**
@@ -100,6 +111,7 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Skill::destroy($id);
+        return redirect('/skills');
     }
 }
